@@ -67,52 +67,52 @@ const RouteApp = () => {
                 <Route path={"/*"} element={<App/>}/>
                 <Route path={"/extrait"} element={<Template content={<Extrait/>}/>}/>
                 <Route path="login" element={<Template content={<Login token={token} setToken={setToken}/>}/>}/>
-                    <Route path="film" element={<TemplateOut/>}>
-                        <Route path={":id"} element={<Detail types={"movie"}/>}/>
-                        <Route path={"genrelist"} element={<GenreFilmIndex/>}/>
-                        <Route path={"recherche"} element={<Recherche types={"movie"}/>}/>
-                        <Route path={"popular"} element={<Film types={"popular"} type={"movie"}/>}/>
-                        <Route path={"top"} element={<Film types={"top_rated"} type={"movie"}/>}/>
-                        <Route path={"new"} element={<Film types={"upcoming"} type={"movie"}/>}/>
-                        {
-                            k.map((genres) => (
-                                    <Route key={genres.id} path={"genre/" + genres.name.toLowerCase().replace(" ", "")}
-                                           element={<GenreFilm genre={genres.id} type={"movie"}/>}/>
-                                )
+                <Route path="film" element={<TemplateOut/>}>
+                    <Route path={":id"} element={<Detail types={"movie"}/>}/>
+                    <Route path={"genrelist"} element={<GenreFilmIndex/>}/>
+                    <Route path={"recherche"} element={<Recherche types={"movie"}/>}/>
+                    <Route path={"popular"} element={<Film types={"popular"} type={"movie"}/>}/>
+                    <Route path={"top"} element={<Film types={"top_rated"} type={"movie"}/>}/>
+                    <Route path={"new"} element={<Film types={"upcoming"} type={"movie"}/>}/>
+                    {
+                        k.map((genres) => (
+                                <Route key={genres.id} path={"genre/" + genres.name.toLowerCase().replace(" ", "")}
+                                       element={<GenreFilm genre={genres.id} type={"movie"}/>}/>
                             )
-                        }
-                    </Route>
-                    <Route path="serie" element={<TemplateOut/>}>
-                        <Route path={"recherche"} element={<Recherche types={"tv"}/>}/>
-                        <Route path={":id"} element={<Detail types={"tv"}/>}/>
-                        <Route path={"popular"} element={<Film types={"popular"} type={"tv"}/>}/>
-                        <Route path={"top"} element={<Film types={"top_rated"} type={"tv"}/>}/>
-                        <Route path={"new"} element={<Film types={"on_the_air"} type={"tv"}/>}/>
-                        <Route path={"genrelist"} element={<GenreSerieIndex/>}/>
-                        {
-                            k2.map((genres) => (
-                                    <Route key={genres.id} path={"genre/" + genres.name.toLowerCase().replace(" ", "")}
-                                           element={<GenreFilm type={"tv"} genre={genres.id}/>}/>
-                                )
+                        )
+                    }
+                </Route>
+                <Route path="serie" element={<TemplateOut/>}>
+                    <Route path={"recherche"} element={<Recherche types={"tv"}/>}/>
+                    <Route path={":id"} element={<Detail types={"tv"}/>}/>
+                    <Route path={"popular"} element={<Film types={"popular"} type={"tv"}/>}/>
+                    <Route path={"top"} element={<Film types={"top_rated"} type={"tv"}/>}/>
+                    <Route path={"new"} element={<Film types={"on_the_air"} type={"tv"}/>}/>
+                    <Route path={"genrelist"} element={<GenreSerieIndex/>}/>
+                    {
+                        k2.map((genres) => (
+                                <Route key={genres.id} path={"genre/" + genres.name.toLowerCase().replace(" ", "")}
+                                       element={<GenreFilm type={"tv"} genre={genres.id}/>}/>
                             )
-                        }
-                    </Route>
-                    <Route path="materiel" element={<TemplateOut/>}>
-                        <Route path={"original"} element={<Original/>}/>
-                        <Route path={":id"} element={<DetailMateriel/>}/>
+                        )
+                    }
+                </Route>
+                <Route path="materiel" element={<TemplateOut/>}>
+                    <Route path={"original"} element={<Original/>}/>
+                    <Route path={":id"} element={<DetailMateriel/>}/>
 
-                    </Route>
-                    <Route path="menu" element={<App/>}/>
-                    <Route path={"panier"}
-                           element={
-                               <RequireAuth loginPath={'login'}>
+                </Route>
+                <Route path="menu" element={<App/>}/>
+                <Route path={"panier"}
+                       element={
+                    <Template content={<RequireAuth loginPath={'login'}>
                                    <Panier token={token} setToken={setToken}/>
-                               </RequireAuth>
-                           }/>
+                               </RequireAuth>}/>
+                       }/>
 
-            </Routes>
-        </BrowserRouter>
-    );
-};
+                           </Routes>
+                           </BrowserRouter>
+                           );
+                       };
 
-export default RouteApp;
+                export default RouteApp;
