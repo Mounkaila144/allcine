@@ -43,7 +43,7 @@ class Article
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
-    #[Vich\UploadableField(mapping: 'product_image', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'article', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string')]

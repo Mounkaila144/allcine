@@ -44,7 +44,7 @@ export default function MaterialCard({products}) {
                 borderRadius: '4%',
             }}
                        component="img"
-                       image={`https://allcine227.com/image/${products.imageName}`}
+                       image={`https://127.0.0.1:8000/image/${products.imageName}`}
                        alt="green iguana"
             />
             <CardContent

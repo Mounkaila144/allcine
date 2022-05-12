@@ -14,8 +14,15 @@ class PubType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('description')
             ->add('videoFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => '...',
+                'download_uri' => '...',
+                'download_label' => '...',
+                'asset_helper' => true,
+            ])
+            ->add('imageFile', VichFileType::class, [
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => '...',

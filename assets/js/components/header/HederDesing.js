@@ -28,6 +28,11 @@ import Btnderoulan from "../Btnderoulan";
 import NestedList from "../BtnSidebar";
 import NestedBtn from "../NestedBtn";
 import {useIsAuthenticated, useSignOut} from "react-auth-kit";
+import ListItemButton from "@mui/material/ListItemButton";
+import CableIcon from '@mui/icons-material/Cable';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const drawerWidth = 240;
 
@@ -95,11 +100,20 @@ export default function HeaderDesing(props) {
     };
 
     const menu = () => {
-        navigate(`menu `)
+        navigate(`/menu `)
         setOpen(false);
     };
+    const materiel = () => {
+        navigate("/materiel/original")
+        setOpen(false);
+    };
+    const extrait = () => {
+        navigate("/extrait")
+        setOpen(false);
+    };
+
     const login = () => {
-        navigate(`login `)
+        navigate(`/login `)
         setOpen(false);
     };
 
@@ -158,10 +172,10 @@ export default function HeaderDesing(props) {
                 <Button
                     variant="contained"
                     sx={{
-                        my: 2, color: 'white', display: 'block', backgroundColor: pink[900]
+                        color: 'white', backgroundColor: grey[600]
                     }}
                     onClick={menu}
-
+                    startIcon={<AttachMoneyIcon sx={{color:'yellow'}}/>}
                 >
                     Tarifs
                 </Button>
@@ -178,12 +192,20 @@ export default function HeaderDesing(props) {
                         <NestedBtn setOpen={setOpen} name={"plus vue"} link={"/serie/top"}/>
                         <NestedBtn setOpen={setOpen} name={"Trier par genre"} link={"/serielist"}/>
                     </NestedList>
-
-                    <NestedList name={"Materiel"}>
-                        <NestedBtn setOpen={setOpen} name={"Original"} link={"/materiel/original"}/>
-                        <NestedBtn setOpen={setOpen} name={"Moyenne"} link={"/materiel/moyenne"}/>
-                        <NestedBtn setOpen={setOpen} name={"Moins chere"} link={"/materiel/moins"}/>
-                    </NestedList>
+                    <ListItemButton onClick={materiel}
+                                    sx={{color: 'white'}}>
+                        <ListItemIcon>
+                            <CableIcon sx={{color:"white"}}/>
+                        </ListItemIcon>
+                        <ListItemText primary={"Materiel"}/>
+                    </ListItemButton>
+                    <ListItemButton onClick={extrait}
+                                    sx={{color: 'white'}}>
+                        <ListItemIcon>
+                            <CableIcon sx={{color: "white"}}/>
+                        </ListItemIcon>
+                        <ListItemText primary={"Extrait"}/>
+                    </ListItemButton>
 
 
                 </List>
@@ -191,21 +213,22 @@ export default function HeaderDesing(props) {
                     <Button
                         variant="contained"
                         sx={{
-                            my: 2, color: 'white', display: 'block', backgroundColor: pink[900]
+                            backgroundColor: grey[600]
                         }}
                         onClick={deconexion}
-
+                        startIcon={<LogoutIcon/>}
                     >
                         Deconnexion
                     </Button>:
                     <Button
                         variant="contained"
                         sx={{
-                            my: 2, color: 'white', display: 'block', backgroundColor: pink[900],width:110
+                             color: 'white',backgroundColor: grey[600]
                         }}
                         onClick={login}
-
+                        startIcon={<LoginIcon/>}
                     >
+
                         Connexion
                     </Button>}
             </Drawer>

@@ -18,7 +18,7 @@ const NestedBtn = ({name, link,setOpen}) => {
            onClick={handleDrawerClose}
         >
             <ListItemIcon>
-                <LocalMoviesIcon sx={{color:"black"}}/>
+                <LocalMoviesIcon sx={{color:"blue"}}/>
             </ListItemIcon>
             <ListItemText primary={name}/>
         </ListItemButton>

@@ -11,6 +11,7 @@ import Recherche from "./Page/Video/Recherche";
 import Original from "./Page/Materiel/Original";
 import DetailMateriel from "./Page/Materiel/DetailMateriel";
 import Panier from "./Page/Panier";
+import Extrait from "./Page/Extrait";
 import Login from "./Page/Login";
 import {RequireAuth} from 'react-auth-kit'
 import Menu from "./Page/Menu";
@@ -63,13 +64,9 @@ const RouteApp = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="login" element={
-                    <Template
-                        content={<Login token={token} setToken={setToken}/>}
-                    />
-                }/>
-                <Route path={"/*"} element={<App/>}>
-                </Route>
+                <Route path={"/*"} element={<App/>}/>
+                <Route path={"/extrait"} element={<Template content={<Extrait/>}/>}/>
+                <Route path="login" element={<Template content={<Login token={token} setToken={setToken}/>}/>}/>
                     <Route path="film" element={<TemplateOut/>}>
                         <Route path={":id"} element={<Detail types={"movie"}/>}/>
                         <Route path={"genrelist"} element={<GenreFilmIndex/>}/>
@@ -85,7 +82,6 @@ const RouteApp = () => {
                             )
                         }
                     </Route>
-
                     <Route path="serie" element={<TemplateOut/>}>
                         <Route path={"recherche"} element={<Recherche types={"tv"}/>}/>
                         <Route path={":id"} element={<Detail types={"tv"}/>}/>
@@ -106,8 +102,7 @@ const RouteApp = () => {
                         <Route path={":id"} element={<DetailMateriel/>}/>
 
                     </Route>
-
-                    <Route path="menu" element={<Menu/>}/>
+                    <Route path="menu" element={<App/>}/>
                     <Route path={"panier"}
                            element={
                                <RequireAuth loginPath={'login'}>

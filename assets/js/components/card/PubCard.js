@@ -10,12 +10,13 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {cyan, pink} from "@mui/material/colors";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {Paid} from "@mui/icons-material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useCart} from "react-use-cart";
 import {useIsAuthenticated} from 'react-auth-kit'
 import DoneIcon from "@mui/icons-material/Done";
 import Box from "@mui/material/Box";
 import ReactPlayer from "react-player";
+import axios from "axios";
 export default function PubCard({products}) {
     const [c, setC] = useState(1);
     const {addItem, removeItem, inCart} = useCart();
@@ -32,6 +33,41 @@ export default function PubCard({products}) {
             fontSize: '6.4rem',
         },
     };
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [product, setProduct] = useState([]);
+    const [pagecount, setpagecount] = useState(0);
+    const [page, setPage] = React.useState(1);
+
+
+    const url=`https://127.0.0.1:8000/api/pub.json?page=${page}`
+    const getData =async () => {
+        axios
+            .get(url,{
+                headers:{
+                    "name":"",
+                    "password":""
+                }
+            })
+            .then(
+                (res) => {
+                    setIsLoaded(true);
+                    setProduct(res.data);
+                    setpagecount(50)
+
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    }
+
+    useEffect(() => {
+        getData()
+        window.scrollTo(0, 0);
+    }, [page])
+
     return (
         <Card sx={{
             borderRadius: '4%',
@@ -50,7 +86,7 @@ bgcolor:"grey.900"
                     playing
                     width={"100%"}
                     height={"100%"}
-                    url={`https://allcine227.com/image/${products.videoName}`}/>
+                    url={`https://127.0.0.1:8000/image/${products.videoName}`}/>
                 <ThemeProvider theme={theme}>
                     <Typography component="h3" color={"white"}>
                         {products.nom}

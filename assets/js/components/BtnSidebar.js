@@ -23,7 +23,7 @@ export default function NestedList({name,children}) {
         <>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon />
+                    <InboxIcon sx={{color:"white"}}/>
                 </ListItemIcon>
                 <ListItemText primary={name} />
                 {open ? <ExpandLess /> : <ExpandMore />}

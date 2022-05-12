@@ -16,6 +16,7 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 
 
 
+
 export default function HeaderPhone() {
     const signOut = useSignOut()
     const auth = useIsAuthenticated()
@@ -24,7 +25,6 @@ export default function HeaderPhone() {
 
     function handleClick() {
         navigate(`/Menu`)
-        window.location.reload()
     }
 
     function register() {
@@ -59,13 +59,27 @@ export default function HeaderPhone() {
                 name3={"plus vues"} lien3={"/serie/top"}
                 name4={"Trier par genre"} lien4={"/serielist"}
             />
-            <Btnderoulan
-                name={"Materiel"}
-                name1={"original"} lien1={"/materiel/original"}
-                name2={"Moyenne"} lien2={"/materiel/moyenne"}
-                name3={"Moins chere"} lien3={"/materiel/moins"}
-                name4={"Moins chere"} lien4={"/film/action"}
-            />
+            <Button
+                variant="contained"
+                sx={{
+                    my: 2, color: 'white', display: 'block', backgroundColor: pink[900], marginLeft: 2,width:110
+                }}
+                onClick={() => navigate("/materiel/original")}
+
+            >
+                Materiel
+            </Button>
+            <Button
+                variant="contained"
+                sx={{
+                    my: 2, color: 'white', display: 'block', backgroundColor: pink[900], marginLeft: 2,width:110
+                }}
+                onClick={() => navigate("/extrait")}
+
+            >
+                Extrait
+            </Button>
+
         </>}
         search={
             <>
@@ -73,7 +87,7 @@ export default function HeaderPhone() {
                     {auth() ?
                         <>
                             <Box sx={{display: {xs: 'flex', md: 'none'},width:150,height:45,marginTop:2}}>
-                                { <img src={Allcine}/>}
+                                { <img src={Allcine} width={150}/>}
                             </Box>
                             <Button
                                 variant="contained"
