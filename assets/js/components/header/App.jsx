@@ -11,7 +11,9 @@ import {useIsAuthenticated, useSignOut} from 'react-auth-kit'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Allcine from './logo7.png'
 import Box from "@mui/material/Box";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import jwt_decode from "jwt-decode";
 
 
 
@@ -20,6 +22,8 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 export default function HeaderPhone() {
     const signOut = useSignOut()
     const auth = useIsAuthenticated()
+    const token = localStorage.getItem('token')
+    var decode=jwt_decode(token)
 
     let navigate = useNavigate();
 
@@ -29,6 +33,10 @@ export default function HeaderPhone() {
 
     function register() {
         navigate(`/register`)
+        window.location.reload()
+    }
+ function admin() {
+        navigate(`/admin`)
         window.location.reload()
     }
 
@@ -99,6 +107,18 @@ export default function HeaderPhone() {
                             >
                                 <ShoppingCartIcon/>
                             </Button>
+                            {decode.roles.includes('ROLE_ADMIN')?
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    my: 2, color: 'white', display: 'block', backgroundColor: pink[900], marginLeft: 3
+                                }}
+                                onClick={admin}
+
+                            >
+                                <AdminPanelSettingsIcon/>
+                            </Button>:null}
+
                         </> : <>
                             <Box sx={{display: {xs: 'flex', md: 'none'},width:130,height:35,marginTop:2}}>
                                 { <img src={Allcine}/>}
@@ -140,6 +160,17 @@ export default function HeaderPhone() {
                             >
                                 <ShoppingCartIcon/>
                             </Button>
+                            {decode.roles.includes('ROLE_ADMIN')?
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        my: 2, color: 'white', display: 'block', backgroundColor: pink[900], marginLeft: 3
+                                    }}
+                                    onClick={admin}
+
+                                >
+                                    <AdminPanelSettingsIcon/>
+                                </Button>:null}
                         </> : <>
                             <Button
                                 variant="contained"

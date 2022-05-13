@@ -57,3 +57,6 @@ function addMarker(pos){
     // On ajoute le marqueur
     marqueur.addTo(mymap)
 }
+let a=['a','b','c']
+let b=a.includes('h')
+console.log(b)

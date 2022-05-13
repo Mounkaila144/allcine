@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Pub index</h1>
-
+<div class="table-responsive">
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -36,6 +36,7 @@
                         {% endfor %}
                         </tbody>
                     </table>
+</div>
 
     <a href="{{ path('admin_pub_new') }}"><button type="submit" class="btn btn-primary me-2">Ajouter</button></a>
 {% endblock %}
