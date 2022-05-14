@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create("fr_FR");
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 50; $i++) {
             $article = new Article();
             $article
                 ->setNom($faker->userName)
@@ -25,13 +25,6 @@ class AppFixtures extends Fixture
                 ->setQuantiteRestant($faker->numberBetween(10, 100))
                 ->setImageName("1-626f9c40e86e4320259172.png");
             $manager->persist($article);
-
-                $pub = new Pub();
-                $pub
-                    ->setNom("le titre de du film a regarder")
-                    ->setDescription("ff")
-                    ->setVideoName("kokowa-tsakanin-bindigaw-da-boube-bourema-468-x-854-627cc9d6dbffc795969989.mp4");
-                $manager->persist($pub);
 
 
                 $user = new User();

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\SearchclientType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,11 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/client', name: 'admin_')]
 class ClientController extends AbstractController
 {
-    #[Route('/', name: 'client_index', methods: ['GET'])]
-    public function index(UserRepository $clientRepository): Response
+
+    #[Route('/', name: 'client_index', methods: ['GET','POST'])]
+    public function index(UserRepository $clientRepository,Request $request): Response
     {
+        $clients = $clientRepository->findAll();
+
+        $form = $this->createForm(SearchclientType::class);
+
+        $search = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            // On recherche les clients correspondant aux mots clés
+            $clients = $clientRepository->search(
+                $search->get('mots')->getData(),
+            );
+        }
+
         return $this->render('admin/client/index.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clients,
+            'form' => $form->createView()
         ]);
     }
 
